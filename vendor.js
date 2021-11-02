@@ -1,6 +1,6 @@
 'use strict';
 
-const parcel = require('./parcel.js');
+const events = require('./hub/events.js');
 
 require('./driver.js');
 
@@ -10,14 +10,12 @@ const info = {
   customer: 'Tony Bologna',
   address: 'Paved Street',
 };
-const time = 'An eternity';
 
-parcel.on('delivered', (payload) => {
+events.on('delivered', (payload) => {
   console.log('VENDOR: Thank you for delivering', payload.info.orderID);
-  console.log('Delivered', payload);
 });
 
-parcel.emit('pickup', {
+events.emit('pickup', {
   time,
   info,
 });
